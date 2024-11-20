@@ -37,14 +37,14 @@ def index():
 #     return jsonify(data="Log injection vulnerability"), 200
 
 
-# @flaskapp.route("/config/")
-# def config():
-#     try:
-#         command = "cat prod.config.yaml"
-#         data = subprocess.check_output(command, shell=True)
-#         return data
-#     except:
-#         return jsonify(data="Command didn't run"), 200
+@flaskapp.route("/config/")
+def config():
+    try:
+        command = "cat prod.config.yaml"
+        data = subprocess.check_output(command, shell=True)
+        return data
+    except:
+        return jsonify(data="Command didn't run"), 200
 
 
 # @flaskapp.route("/read-bad-file")
@@ -65,13 +65,13 @@ def index():
 #         return render_template_string(template)
 
 
-# @flaskapp.route("/get_users")
-# def get_users():
-#     try:
-#         hostname = request.args.get("hostname")
-#         command = "dig " + hostname
-#         data = subprocess.check_output(command, shell=True)
-#         return data
-#     except:
-#         data = str(hostname) + " username not found"
-#         return data
+@flaskapp.route("/get_users")
+def get_users():
+    try:
+        hostname = request.args.get("hostname")
+        command = "dig " + hostname
+        data = subprocess.check_output(command, shell=True) 
+        return data
+    except:
+        data = str(hostname) + " username not found"
+        return data
